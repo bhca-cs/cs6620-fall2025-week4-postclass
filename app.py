@@ -144,7 +144,28 @@ def index():
     """
     Renders the main HTML page for the client-side audio player.
     """
-    return render_template('index.html') 
+    from datetime import datetime
+    return render_template('index.html')
+
+@app.route('/version')
+def version():
+    from datetime import datetime
+    return {
+        'version': '2.0',
+        'deployment_method': 'automated',
+        'deployed_via': 'GitHub Actions + AWS SSM',
+        'timestamp': datetime.now().isoformat()
+    }
+
+@app.route('/health')
+def health():
+    from datetime import datetime
+    return {
+        'status': 'healthy',
+        'version': '2.0',
+        'deployment_method': 'automated',
+        'timestamp': datetime.now().isoformat()
+    }
 
 @app.route('/select_directory', methods=['POST'])
 def select_directory():
